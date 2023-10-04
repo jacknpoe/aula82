@@ -67,7 +67,7 @@ class Bola{
         this.posX += this.dirX * this.velX
         this.posY += this.dirY * this.velY
         this.eu.setAttribute("style", `left:${this.posX}px;top:${this.posY}px;width:${this.tamanho}px;height:${this.tamanho}px;background-color:rgb(${this.r},${this.g},${this.b});`)
-        if((this.posX > (larguraPalco - this.tamanho)) || (this.posY > (alturaPalco - this.tamanho))){
+        if((this.posX > (larguraPalco - this.tamanho + 1)) || (this.posY > (alturaPalco - this.tamanho + 1))){
             this.remover()
         }
     }
