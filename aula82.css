@@ -57,3 +57,25 @@ input[type='number'], #numObjetos{
     position: absolute;
     border-radius: 100px;
 }
+@media (prefers-color-scheme: dark) { 
+  body{
+     color: #fff;
+     background-color: #111;
+  }
+    .palco{
+        background-color: #222;
+    }
+    .controles{
+        background-color: #111;
+        border: 2px solid #fff;
+    }
+    .controle{
+        background-color: #222;
+    }
+    a:link{
+        color: #fff;
+    }
+    a:visited{
+        color: #88f;
+    }
+}
