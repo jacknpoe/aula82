@@ -28,6 +28,8 @@ class Bola{
         this.id = Date.now() + "_" + Math.floor(Math.random() * 100000000000000)
         this.desenhar()
         // this.controle = setInterval(this.controlar, 10)
+        this.ultimahora = performance.now()
+        console.log(this.ultimahora)
         this.controle = requestAnimationFrame(this.controlar)   // 05/01/2024
         this.eu = window.document.getElementById(this.id)
         numBolas++
@@ -67,12 +69,18 @@ class Bola{
     }
 
     controlar = () => {
-        this.controleBordas()
-        this.posX += this.dirX * this.velX
-        this.posY += this.dirY * this.velY
-        this.eu.setAttribute("style", `left:${this.posX}px;top:${this.posY}px;width:${this.tamanho}px;height:${this.tamanho}px;background-color:rgb(${this.r},${this.g},${this.b});`)
-        if((this.posX > (larguraPalco - this.tamanho + 1)) || (this.posY > (alturaPalco - this.tamanho + 1))){
-            this.remover()
+        const agora = performance.now()  // 05/01/2024
+        if( agora >= (this.ultimahora + 10)) {  // 05/01/2024
+            this.ultimahora = agora  // 05/01/2024
+            this.controleBordas()
+            this.posX += this.dirX * this.velX
+            this.posY += this.dirY * this.velY
+            this.eu.setAttribute("style", `left:${this.posX}px;top:${this.posY}px;width:${this.tamanho}px;height:${this.tamanho}px;background-color:rgb(${this.r},${this.g},${this.b});`)
+            if((this.posX > (larguraPalco - this.tamanho + 1)) || (this.posY > (alturaPalco - this.tamanho + 1))){
+                this.remover()
+            } else {
+                this.controle = requestAnimationFrame(this.controlar)   // 05/01/2024
+            }
         } else {
             this.controle = requestAnimationFrame(this.controlar)   // 05/01/2024
         }
