@@ -1,3 +1,5 @@
+// Versão de 05/01/2024: alterado de setInterval para requestAnimationFrame
+
 const palco = window.document.getElementById("palco")
 const numObjetos = window.document.getElementById("numObjetos")
 const txtQuantidade = window.document.getElementById("txtQuantidade")
@@ -25,7 +27,8 @@ class Bola{
         this.palco = palco
         this.id = Date.now() + "_" + Math.floor(Math.random() * 100000000000000)
         this.desenhar()
-        this.controle = setInterval(this.controlar, 10)
+        // this.controle = setInterval(this.controlar, 10)
+        this.controle = requestAnimationFrame(this.controlar)   // 05/01/2024
         this.eu = window.document.getElementById(this.id)
         numBolas++
         numObjetos.innerHTML = numBolas
@@ -36,7 +39,8 @@ class Bola{
     }
 
     remover = () => {
-        clearInterval(this.controle)
+        // clearInterval(this.controle)
+        cancelAnimationFrame(this.controle) // 05/01/2024
         arrayBolas = arrayBolas.filter((b) => {
             if(b.id != this.id){
                 return b
@@ -69,6 +73,8 @@ class Bola{
         this.eu.setAttribute("style", `left:${this.posX}px;top:${this.posY}px;width:${this.tamanho}px;height:${this.tamanho}px;background-color:rgb(${this.r},${this.g},${this.b});`)
         if((this.posX > (larguraPalco - this.tamanho + 1)) || (this.posY > (alturaPalco - this.tamanho + 1))){
             this.remover()
+        } else {
+            this.controle = requestAnimationFrame(this.controlar)   // 05/01/2024
         }
     }
 
