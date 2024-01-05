@@ -28,8 +28,7 @@ class Bola{
         this.id = Date.now() + "_" + Math.floor(Math.random() * 100000000000000)
         this.desenhar()
         // this.controle = setInterval(this.controlar, 10)
-        this.ultimahora = performance.now()
-        console.log(this.ultimahora)
+        this.ultimahora = performance.now()   // 05/01/2024
         this.controle = requestAnimationFrame(this.controlar)   // 05/01/2024
         this.eu = window.document.getElementById(this.id)
         numBolas++
